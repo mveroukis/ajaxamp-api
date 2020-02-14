@@ -1,0 +1,139 @@
+openapi: 3.0.0
+info:
+  title: AjaxAmp
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:5151'
+paths:
+  /console.xml:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/console'
+      operationId: get-console.xml
+  /playlist.xml:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  '':
+                    $ref: '#/components/schemas/Playlist'
+                required:
+                  - ''
+      operationId: get-playlist.xml
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: id
+components:
+  schemas:
+    console:
+      title: console
+      type: object
+      x-tags:
+        - Player
+      description: ''
+      properties:
+        artist:
+          type: string
+          example: U2
+        album:
+          type: string
+          example: Achtung Baby
+        title:
+          type: string
+          example: Mysterious Ways
+        filename:
+          type: string
+          example: "C:\\Music\\Mysterious Ways.mp3"
+        volume:
+          type: integer
+          format: int32
+          example: '255'
+          minimum: 0
+          maximum: 255
+        isRepeat:
+          type: boolean
+        isShuffle:
+          type: boolean
+        length:
+          type: string
+        bitrate:
+          type: integer
+        position:
+          type: number
+        lengthms:
+          type: integer
+    playlist_track:
+      title: playlist_track
+      type: object
+      properties:
+        index:
+          type: integer
+        title:
+          type: string
+        filename:
+          type: string
+          format: uri
+    Playlist:
+      title: playlist
+      type: object
+      description: ''
+      properties:
+        playing:
+          type: integer
+        dirty:
+          type: integer
+          default: 0
+          format: int32
+          example: '1'
+          minimum: 0
+          maximum: 1
+        entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/playlist_track'
+      required:
+        - playing
+        - dirty
+        - entries
+    library_file:
+      title: library_file
+      type: object
+      properties:
+        name:
+          type: string
+        path:
+          type: string
+        type:
+          type: string
+        '':
+          type: string
+    library_folder:
+      title: library_folder
+      type: object
+      properties:
+        path:
+          type: string
+        auth:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/library_file'
