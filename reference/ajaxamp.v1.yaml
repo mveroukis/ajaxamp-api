@@ -2,7 +2,10 @@ openapi: 3.0.0
 info:
   title: AjaxAmp
   version: '1.0'
-  description: ''
+  description: The REST API for the Winamp plugin AjaxAMP
+  contact:
+    name: Michael Veroukis
+    email: mveroukis@blitterhead.com
 servers:
   - url: 'http://localhost:5151'
 paths:
@@ -18,6 +21,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/console'
       operationId: get-console.xml
+      description: Get the state of the player
   /playlist.xml:
     get:
       summary: playlist.xml
@@ -28,14 +32,10 @@ paths:
           content:
             application/xml:
               schema:
-                type: object
-                properties:
-                  '':
-                    $ref: '#/components/schemas/Playlist'
-                required:
-                  - ''
+                $ref: '#/components/schemas/Playlist'
+              examples: {}
       operationId: get-playlist.xml
-      description: ''
+      description: Get the current playlist
       parameters:
         - schema:
             type: string
@@ -45,62 +45,92 @@ paths:
     post:
       summary: play
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-play
+      description: Play
   /pause:
     post:
       summary: pause
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-pause
+      description: Pause
   /stop:
     post:
       summary: stop
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-stop
+      description: Stop playback
   /prev:
     post:
       summary: prev
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-prev
+      description: Play previous track
   /next:
     post:
       summary: next
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-next
+      description: Plays next track
   /rew5s:
     post:
       summary: rew5s
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-rew5s
+      description: rewinds 5 seconds
   /ffw5s:
     post:
       summary: ffw5s
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-ffw5s
+      description: Fastforward 5 seconds
   /togglerepeat:
     post:
       summary: togglerepeat
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-togglerepeat
+      description: Toggles repeat of playlist
   /toggleshuffle:
     post:
       summary: toggleshuffle
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-toggleshuffle
+      description: Toggles shuffle of playlist
   '/setvolume/{level}':
     post:
       summary: setvolume
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-setvolume
+      description: 'Set volume. Level is from 0 to 255, where 255 is max volume.'
     parameters:
       - schema:
           type: integer
@@ -113,8 +143,11 @@ paths:
     post:
       summary: setposition
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-setposition
+      description: 'Set position, where pos is a float from 0 to 1.'
     parameters:
       - schema:
           type: number
@@ -148,7 +181,7 @@ components:
         volume:
           type: integer
           format: int32
-          example: '255'
+          example: 255
           minimum: 0
           maximum: 255
         isRepeat:
@@ -185,7 +218,7 @@ components:
           type: integer
           default: 0
           format: int32
-          example: '1'
+          example: 1
           minimum: 0
           maximum: 1
         entries:
