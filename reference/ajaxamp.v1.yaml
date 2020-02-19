@@ -8,7 +8,7 @@ servers:
 paths:
   /console.xml:
     get:
-      summary: Your GET endpoint
+      summary: console.xml
       tags: []
       responses:
         '200':
@@ -20,7 +20,7 @@ paths:
       operationId: get-console.xml
   /playlist.xml:
     get:
-      summary: Your GET endpoint
+      summary: playlist.xml
       tags: []
       responses:
         '200':
@@ -41,6 +41,89 @@ paths:
             type: string
           in: query
           name: id
+  /play:
+    post:
+      summary: play
+      tags: []
+      responses: {}
+      operationId: post-play
+  /pause:
+    post:
+      summary: pause
+      tags: []
+      responses: {}
+      operationId: post-pause
+  /stop:
+    post:
+      summary: stop
+      tags: []
+      responses: {}
+      operationId: post-stop
+  /prev:
+    post:
+      summary: prev
+      tags: []
+      responses: {}
+      operationId: post-prev
+  /next:
+    post:
+      summary: next
+      tags: []
+      responses: {}
+      operationId: post-next
+  /rew5s:
+    post:
+      summary: rew5s
+      tags: []
+      responses: {}
+      operationId: post-rew5s
+  /ffw5s:
+    post:
+      summary: ffw5s
+      tags: []
+      responses: {}
+      operationId: post-ffw5s
+  /togglerepeat:
+    post:
+      summary: togglerepeat
+      tags: []
+      responses: {}
+      operationId: post-togglerepeat
+  /toggleshuffle:
+    post:
+      summary: toggleshuffle
+      tags: []
+      responses: {}
+      operationId: post-toggleshuffle
+  '/setvolume/{level}':
+    post:
+      summary: setvolume
+      tags: []
+      responses: {}
+      operationId: post-setvolume
+    parameters:
+      - schema:
+          type: integer
+          maximum: 255
+          minimum: 0
+        name: level
+        in: path
+        required: true
+  '/setposition/{pos}':
+    post:
+      summary: setposition
+      tags: []
+      responses: {}
+      operationId: post-setposition
+    parameters:
+      - schema:
+          type: number
+          default: 0
+          maximum: 1
+          minimum: 0
+        name: pos
+        in: path
+        required: true
 components:
   schemas:
     console:
