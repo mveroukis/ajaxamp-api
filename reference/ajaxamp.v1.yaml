@@ -157,6 +157,130 @@ paths:
         name: pos
         in: path
         required: true
+  /library.js:
+    get:
+      summary: Library
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/library_folder'
+      operationId: get-library.js
+      description: Get files list from a specific path.
+      requestBody:
+        description: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: path
+        - schema:
+            type: integer
+          in: query
+          name: sort
+        - schema:
+            type: string
+          in: query
+          name: sortdir
+    parameters: []
+  /setplaylistpos:
+    post:
+      summary: setplaylistpos
+      tags: []
+      responses: {}
+      operationId: post-setplaylistpos
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: index
+      description: Starts playback at the specified position
+  /clearPlaylist:
+    post:
+      summary: clearPlaylist
+      tags: []
+      responses: {}
+      operationId: post-clearPlaylist
+      description: Removes all tracks from the playlist but does not affect playback of current track
+  /playfile:
+    post:
+      summary: Playfile
+      tags: []
+      responses: {}
+      operationId: post-playfile
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: filename
+        - schema:
+            type: string
+          in: query
+          name: title
+      description: Replaces the playlist with the specified file/folder and begins playback
+  /enqueuefile:
+    post:
+      summary: enqueuefile
+      tags: []
+      responses: {}
+      operationId: post-enqueuefile
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: filename
+        - schema:
+            type: string
+          in: query
+          name: title
+      description: Enqueues a file at the end of the playlist
+  /enqueueFileNext:
+    post:
+      summary: enqueueFileNext
+      tags: []
+      responses: {}
+      operationId: post-enqueueFileNext
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: filename
+        - schema:
+            type: string
+          in: query
+          name: title
+      description: Enqueues a file immediately after the currently playing file in the playlist
+  /deleteplaylistitem:
+    post:
+      summary: deleteplaylistitem
+      tags: []
+      responses: {}
+      operationId: post-deleteplaylistitem
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: index
+      description: Removes an item from the playlist at the specified index
+  /moveplaylistitem:
+    post:
+      summary: moveplaylistitem
+      tags: []
+      responses: {}
+      operationId: post-moveplaylistitem
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: from
+        - schema:
+            type: integer
+          in: query
+          name: to
+      description: Moves a playlist item from one position to another
 components:
   schemas:
     console:
