@@ -170,8 +170,6 @@ paths:
                 $ref: '#/components/schemas/library_folder'
       operationId: get-library.js
       description: Get files list from a specific path.
-      requestBody:
-        description: ''
       parameters:
         - schema:
             type: string
@@ -192,7 +190,9 @@ paths:
     post:
       summary: setplaylistpos
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-setplaylistpos
       parameters:
         - schema:
@@ -204,14 +204,18 @@ paths:
     post:
       summary: clearPlaylist
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-clearPlaylist
       description: Removes all tracks from the playlist but does not affect playback of current track
   /playfile:
     post:
       summary: Playfile
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-playfile
       parameters:
         - schema:
@@ -227,7 +231,9 @@ paths:
     post:
       summary: enqueuefile
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-enqueuefile
       parameters:
         - schema:
@@ -243,7 +249,9 @@ paths:
     post:
       summary: enqueueFileNext
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-enqueueFileNext
       parameters:
         - schema:
@@ -259,7 +267,9 @@ paths:
     post:
       summary: deleteplaylistitem
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-deleteplaylistitem
       parameters:
         - schema:
@@ -271,7 +281,9 @@ paths:
     post:
       summary: moveplaylistitem
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: OK
       operationId: post-moveplaylistitem
       parameters:
         - schema:
