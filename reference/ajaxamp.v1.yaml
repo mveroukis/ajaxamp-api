@@ -6,6 +6,7 @@ info:
   contact:
     name: Michael Veroukis
     email: mveroukis@blitterhead.com
+    url: www.blitterhead.com
 servers:
   - url: 'http://localhost:5151'
 paths:
@@ -20,8 +21,12 @@ paths:
             application/xml:
               schema:
                 $ref: '#/components/schemas/console'
+        '401':
+          description: Unauthorized
       operationId: get-console.xml
       description: Get the state of the player
+      security:
+        - Basic Auth: []
   /playlist.xml:
     get:
       summary: playlist.xml
@@ -34,6 +39,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/Playlist'
               examples: {}
+        '401':
+          description: Unauthorized
       operationId: get-playlist.xml
       description: Get the current playlist
       parameters:
@@ -41,6 +48,8 @@ paths:
             type: string
           in: query
           name: id
+      security:
+        - Basic Auth: []
   /play:
     post:
       summary: play
@@ -48,8 +57,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-play
       description: Play
+      security:
+        - Basic Auth: []
   /pause:
     post:
       summary: pause
@@ -57,8 +70,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-pause
       description: Pause
+      security:
+        - Basic Auth: []
   /stop:
     post:
       summary: stop
@@ -66,8 +83,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-stop
       description: Stop playback
+      security:
+        - Basic Auth: []
   /prev:
     post:
       summary: prev
@@ -75,8 +96,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-prev
       description: Play previous track
+      security:
+        - Basic Auth: []
   /next:
     post:
       summary: next
@@ -84,8 +109,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-next
       description: Plays next track
+      security:
+        - Basic Auth: []
   /rew5s:
     post:
       summary: rew5s
@@ -93,8 +122,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-rew5s
       description: rewinds 5 seconds
+      security:
+        - Basic Auth: []
   /ffw5s:
     post:
       summary: ffw5s
@@ -102,8 +135,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-ffw5s
       description: Fastforward 5 seconds
+      security:
+        - Basic Auth: []
   /togglerepeat:
     post:
       summary: togglerepeat
@@ -111,8 +148,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-togglerepeat
       description: Toggles repeat of playlist
+      security:
+        - Basic Auth: []
   /toggleshuffle:
     post:
       summary: toggleshuffle
@@ -120,8 +161,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-toggleshuffle
       description: Toggles shuffle of playlist
+      security:
+        - Basic Auth: []
   '/setvolume/{level}':
     post:
       summary: setvolume
@@ -129,8 +174,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-setvolume
       description: 'Set volume. Level is from 0 to 255, where 255 is max volume.'
+      security:
+        - Basic Auth: []
     parameters:
       - schema:
           type: integer
@@ -146,8 +195,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-setposition
       description: 'Set position, where pos is a float from 0 to 1.'
+      security:
+        - Basic Auth: []
     parameters:
       - schema:
           type: number
@@ -168,6 +221,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/library_folder'
+        '401':
+          description: Unauthorized
       operationId: get-library.js
       description: Get files list from a specific path.
       parameters:
@@ -185,6 +240,8 @@ paths:
             type: string
           in: query
           name: sortdir
+      security:
+        - Basic Auth: []
     parameters: []
   /setplaylistpos:
     post:
@@ -193,6 +250,8 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-setplaylistpos
       parameters:
         - schema:
@@ -200,6 +259,8 @@ paths:
           in: query
           name: index
       description: Starts playback at the specified position
+      security:
+        - Basic Auth: []
   /clearPlaylist:
     post:
       summary: clearPlaylist
@@ -207,8 +268,12 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-clearPlaylist
       description: Removes all tracks from the playlist but does not affect playback of current track
+      security:
+        - Basic Auth: []
   /playfile:
     post:
       summary: Playfile
@@ -216,6 +281,8 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-playfile
       parameters:
         - schema:
@@ -227,6 +294,8 @@ paths:
           in: query
           name: title
       description: Replaces the playlist with the specified file/folder and begins playback
+      security:
+        - Basic Auth: []
   /enqueuefile:
     post:
       summary: enqueuefile
@@ -234,6 +303,8 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-enqueuefile
       parameters:
         - schema:
@@ -245,6 +316,8 @@ paths:
           in: query
           name: title
       description: Enqueues a file at the end of the playlist
+      security:
+        - Basic Auth: []
   /enqueueFileNext:
     post:
       summary: enqueueFileNext
@@ -252,6 +325,8 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-enqueueFileNext
       parameters:
         - schema:
@@ -263,6 +338,8 @@ paths:
           in: query
           name: title
       description: Enqueues a file immediately after the currently playing file in the playlist
+      security:
+        - Basic Auth: []
   /deleteplaylistitem:
     post:
       summary: deleteplaylistitem
@@ -270,6 +347,8 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-deleteplaylistitem
       parameters:
         - schema:
@@ -277,6 +356,8 @@ paths:
           in: query
           name: index
       description: Removes an item from the playlist at the specified index
+      security:
+        - Basic Auth: []
   /moveplaylistitem:
     post:
       summary: moveplaylistitem
@@ -284,6 +365,8 @@ paths:
       responses:
         '200':
           description: OK
+        '401':
+          description: Unauthorized
       operationId: post-moveplaylistitem
       parameters:
         - schema:
@@ -295,6 +378,8 @@ paths:
           in: query
           name: to
       description: Moves a playlist item from one position to another
+      security:
+        - Basic Auth: []
 components:
   schemas:
     console:
@@ -391,3 +476,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/library_file'
+  securitySchemes:
+    Basic Auth:
+      type: http
+      scheme: basic
+      description: Basic auth is the only security scheme supported by AjaxAmp. This essentially means there is no security as AjaxAmp does not support SSL or any other form of encryption.
