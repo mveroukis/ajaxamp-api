@@ -177,6 +177,8 @@ paths:
             type: string
           in: query
           name: path
+          description: 'The remte path to a folder that contains music files. To perform a search, the path should start with "search://". To search only folder names, use "searchf://".'
+          required: true
         - schema:
             type: integer
           in: query
