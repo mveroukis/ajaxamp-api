@@ -380,6 +380,43 @@ paths:
       description: Moves a playlist item from one position to another
       security:
         - Basic Auth: []
+  /download:
+    get:
+      summary: download
+      tags: []
+      responses:
+        '200':
+          description: OK
+          headers:
+            Content-Range:
+              schema:
+                type: string
+        '206':
+          description: Partial Content
+          headers:
+            Content-Range:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+      operationId: get-download
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: path
+          description: Full remote path to the file to be downloaded. This supports streaming and media position headers.
+          required: true
+        - schema:
+            type: integer
+            minimum: 0
+            maximum: 0
+            default: 0
+          in: header
+          name: Range
+      security:
+        - Basic Auth: []
+      description: Returns a stream that can be used to download a file or play it as a stream. The start position of the file can be controlled with the Range header.
 components:
   schemas:
     console:
